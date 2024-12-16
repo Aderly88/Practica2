@@ -1,3 +1,4 @@
+@todos
 Feature: Consulta un servicio
 
   @consultaArticulos

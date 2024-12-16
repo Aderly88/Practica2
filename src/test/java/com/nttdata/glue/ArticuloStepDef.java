@@ -24,5 +24,6 @@ public class ArticuloStepDef {
     @Then("imprimo los articulos")
     public void imprimoLosArticulos() {
         articulo.imprimirArticulos();
+        articulo.borrarArticulo();
     }
 }
