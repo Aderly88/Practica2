@@ -1,9 +1,10 @@
 Feature: PetStore API
 
-  @TesPetStore
+  @consulta
   Scenario:Consulta mascota
 
-    Given la url es "https://petstore.swagger.io/v2/pet"
-    When consulto la mascota con ID "1"
-    Then valido el codigo de respuesta sea 200
+    Given la url es "https://petstore.swagger.io/v2"
+    When consulto la mascota con ID "2"
+    Then valido el codigo de respuesta sea 404
+    And valido que el nombre de la mascota sea "Yango"
 

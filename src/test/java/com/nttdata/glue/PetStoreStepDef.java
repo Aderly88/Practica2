@@ -1,27 +1,36 @@
 package com.nttdata.glue;
 
+import com.nttdata.steps.PetStoreStep;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import io.restassured.RestAssured;
+import net.thucydides.core.annotations.Steps;
 
 public class PetStoreStepDef {
+    @Steps
+    PetStoreStep tienda;
+
+
     @Given("la url es {string}")
-    public void laUrlEs(String arg0) {
-        RestAssured
-                .given()
-                //.relaxedHTTPSValidation()
-                .baseUri("https://petstore.swagger.io/v2/pet/1")
-                .log().all()
-                .get()
-        ;
+    public void laUrlEs(String url) {
+        tienda.definirURL(url);
     }
 
     @When("consulto la mascota con ID {string}")
-    public void consultoLaMascotaConID(String arg0) {
+    public void consultoLaMascotaConID(String idMascota) {
+
+        tienda.consultarMascota(idMascota);
+
     }
 
-    @Then("valido el codigo de resúesta sea {int}")
-    public void validoElCodigoDeResuestaSea(int arg0) {
+    @Then("valido el codigo de respuesta sea {int}")
+    public void validoElCodigoDeRespuestaSea(int statusCode) {
+        tienda.validacionRespuesta(statusCode);
+    }
+
+    @And("valido que el nombre de la mascota sea {string}")
+    public void validoQueElNombreDeLaMascotaSea(String nombre) {
+        tienda.validarNombre(nombre);
     }
 }
